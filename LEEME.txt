@@ -1,0 +1,7 @@
+CAPTURAS DE LOS PROYECTOS
+Guardá las capturas en la carpeta img con estos nombres exactos (formato .webp):
+  tumundoads-desktop.webp   (captura de computadora, idealmente 1440x900)
+  tumundoads-mobile.webp    (captura de celular, idealmente 390x844)
+  tecnocell-desktop.webp
+  tecnocell-mobile.webp
+Mientras no estén, los mockups muestran el nombre de cada sitio.

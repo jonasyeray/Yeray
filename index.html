@@ -165,6 +165,40 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
 .project p{margin:0;font-size:15px;color:var(--muted);flex-grow:1}
 .project .btn{margin-top:10px;min-height:46px;font-size:14px;align-self:flex-start}
 .soon{font-family:var(--mono);font-size:12px;color:var(--dim)}
+.cases{display:grid;gap:clamp(28px,5vw,56px);margin-top:44px}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:clamp(20px,4vw,48px);display:grid;gap:32px;align-items:center}
+@media (min-width:900px){.case{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px}.case:nth-child(even) .devices{order:2}}
+.case-body{display:flex;flex-direction:column;gap:12px;min-width:0}
+.case-body h3{margin:0;font-family:var(--display);font-weight:900;font-stretch:75%;text-transform:uppercase;font-size:clamp(34px,4.5vw,52px);line-height:.95}
+.case-body > p{margin:0;color:var(--muted);font-size:16px;max-width:46ch}
+.case-facts{margin:8px 0 6px;display:grid;border-top:1px solid var(--line)}
+.case-facts div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.case-facts dt{font-family:var(--mono);font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;padding-top:2px}
+.case-facts dd{margin:0;font-size:15px}
+.case-body .btn{align-self:flex-start}
+/* Mockups: notebook + celular */
+.devices{position:relative;padding:0 8% 9% 0;min-width:0}
+.laptop{position:relative;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.laptop > .screen{border:10px solid #1F1E1C;border-bottom-width:14px;border-radius:14px 14px 4px 4px;aspect-ratio:16/10}
+.laptop .base{height:12px;margin:0 -6%;background:linear-gradient(180deg,#3A3935,#1F1E1C);border-radius:0 0 14px 14px}
+.phone{position:absolute;right:0;bottom:0;width:27%;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.phone > .screen{border:6px solid #1F1E1C;border-radius:22px;aspect-ratio:9/19.5;box-shadow:0 18px 40px rgba(0,0,0,.55)}
+.case:hover .laptop{transform:translateY(-4px)}
+.case:hover .phone{transform:translateY(-10px) rotate(-2deg)}
+.screen{position:relative;overflow:hidden;display:block}
+.screen .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
+.laptop .screen .shot{top:22px;height:calc(100% - 22px)}
+.screen .bar{position:absolute;top:0;left:0;right:0;height:22px;display:flex;align-items:center;gap:5px;padding:0 10px;z-index:2}
+.screen .bar i{width:7px;height:7px;border-radius:999px;background:currentColor;opacity:.35}
+.screen .bar span{margin-left:8px;font-family:var(--mono);font-size:10px;opacity:.6}
+.screen .fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;padding:12px}
+.screen .fallback strong{font-family:var(--display);font-weight:900;font-stretch:75%;text-transform:uppercase;font-size:clamp(16px,3vw,34px);line-height:1}
+.phone .screen .fallback strong{font-size:clamp(10px,1.6vw,14px)}
+.screen .fallback small{font-family:var(--mono);font-size:10px;opacity:.65}
+.screen-light{background:#F4F3EF;color:#141413}
+.screen-light .bar{background:#E4E2DC}
+.screen-dark{background:#0F0F0F;color:#F2F0EB}
+.screen-dark .bar{background:#1C1C1B}
 
 /* Skate / identidad */
 .identity{position:relative;overflow:hidden}
@@ -343,28 +377,72 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
         <div class="sec-head"><img src="img/badge-white.webp" alt="" width="160" height="160" loading="lazy"><span>Trabajos</span></div>
         <h2>Proyectos</h2>
       </div>
-      <span class="soon">Nuevos proyectos en camino</span>
+      <p class="lead" style="max-width:40ch">Sitios diseñados por mí, publicados y funcionando.</p>
     </div>
-    <div class="projects">
-      <!-- Reemplazar imagen, categoría, nombre, descripción y enlace con un proyecto real -->
-      <article class="project reveal">
-        <div class="project-img"><img src="img/bowl.webp" alt="Imagen provisoria del proyecto" width="722" height="1280" loading="lazy" style="object-position:50% 38%"></div>
-        <div class="project-body">
-          <span class="cat">[Categoría]</span>
-          <h3>[Nombre del proyecto]</h3>
-          <p>[Breve descripción del proyecto]</p>
-          <a class="btn btn-ghost" href="#">Ver proyecto</a>
+    <div class="cases">
+
+      <!-- CASO 1 · Capturas: img/tumundoads-desktop.webp y img/tumundoads-mobile.webp -->
+      <article class="case reveal">
+        <div class="devices" aria-hidden="true">
+          <div class="laptop">
+            <div class="screen screen-light">
+              <div class="bar"><i></i><i></i><i></i><span>tumundoads.com</span></div>
+              <div class="fallback"><strong>TuMundoAds</strong><small>Publicidad digital</small></div>
+              <img class="shot" src="img/tumundoads-desktop.webp" alt="" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="base"></div>
+          </div>
+          <div class="phone">
+            <div class="screen screen-light">
+              <div class="fallback"><strong>TuMundoAds</strong></div>
+              <img class="shot" src="img/tumundoads-mobile.webp" alt="" loading="lazy" onerror="this.remove()">
+            </div>
+          </div>
+        </div>
+        <div class="case-body">
+          <span class="cat">Diseño web · Agencia de publicidad</span>
+          <h3>TuMundoAds</h3>
+          <p>Sitio para una agencia de publicidad digital que gestiona campañas en Google, Meta y TikTok Ads.</p>
+          <dl class="case-facts">
+            <div><dt>Objetivo</dt><dd>Presentar los servicios, los planes y el proceso de trabajo de forma clara para empresas.</dd></div>
+            <div><dt>Mi rol</dt><dd>Diseño web</dd></div>
+          </dl>
+          <a class="btn btn-yellow" href="https://www.tumundoads.com" target="_blank" rel="noopener">Ver sitio
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         </div>
       </article>
-      <article class="project reveal">
-        <div class="project-img"><img src="img/linea.webp" alt="Imagen provisoria del proyecto" width="732" height="1280" loading="lazy" style="object-position:50% 45%"></div>
-        <div class="project-body">
-          <span class="cat">[Categoría]</span>
-          <h3>[Nombre del proyecto]</h3>
-          <p>[Breve descripción del proyecto]</p>
-          <a class="btn btn-ghost" href="#">Ver proyecto</a>
+
+      <!-- CASO 2 · Capturas: img/tecnocell-desktop.webp y img/tecnocell-mobile.webp -->
+      <article class="case reveal">
+        <div class="devices" aria-hidden="true">
+          <div class="laptop">
+            <div class="screen screen-dark">
+              <div class="bar"><i></i><i></i><i></i><span>tecnocell.com.ar</span></div>
+              <div class="fallback"><strong>Tecnocell</strong><small>Tienda online</small></div>
+              <img class="shot" src="img/tecnocell-desktop.webp" alt="" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="base"></div>
+          </div>
+          <div class="phone">
+            <div class="screen screen-dark">
+              <div class="fallback"><strong>Tecnocell</strong></div>
+              <img class="shot" src="img/tecnocell-mobile.webp" alt="" loading="lazy" onerror="this.remove()">
+            </div>
+          </div>
+        </div>
+        <div class="case-body">
+          <span class="cat">Diseño web · E-commerce</span>
+          <h3>Tecnocell</h3>
+          <p>Tienda online de productos tecnológicos, pensada para comprar cómodo desde el celular y la computadora.</p>
+          <dl class="case-facts">
+            <div><dt>Objetivo</dt><dd>Mostrar el catálogo de productos y facilitar la compra online.</dd></div>
+            <div><dt>Mi rol</dt><dd>Diseño web</dd></div>
+          </dl>
+          <a class="btn btn-yellow" href="https://www.tecnocell.com.ar" target="_blank" rel="noopener">Ver sitio
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         </div>
       </article>
+
     </div>
   </div>
 </section>
