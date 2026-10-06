@@ -78,26 +78,29 @@ a{color:inherit}
 .link-arrow:hover svg{transform:translateX(4px)}
 
 /* ---------- Hero ---------- */
-.hero{position:relative;min-height:680px;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
-.hero-media{position:absolute;inset:0;z-index:-1}
-.hero-media img{width:100%;height:115%;object-fit:cover;object-position:40% 30%;will-change:transform}
-.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,11,.6) 0%,rgba(11,11,11,0) 20%,rgba(11,11,11,0) 36%,rgba(11,11,11,.9) 68%,var(--bg) 100%)}
-.hero-copy{display:flex;flex-direction:column;gap:18px;padding-block:120px 36px}
+.hero{position:relative;overflow:hidden;isolation:isolate}
+.hero-media{position:relative;z-index:0;height:min(54svh,500px);min-height:330px;margin-inline:calc(var(--gutter) * -1);overflow:hidden}
+.hero-media img{width:100%;height:115%;object-fit:cover;object-position:42% 22%;will-change:transform}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,11,.55) 0%,rgba(11,11,11,0) 18%,rgba(11,11,11,0) 62%,rgba(11,11,11,.85) 88%,var(--bg) 100%)}
+.hero-copy{position:relative;z-index:1;display:flex;flex-direction:column;gap:16px;margin-top:-72px;padding-block:0 40px}
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--yellow);text-transform:uppercase}
-.hero h1{margin:0;font-family:var(--display);font-weight:900;font-stretch:70%;text-transform:uppercase;font-size:clamp(58px,9vw,124px);line-height:.88;letter-spacing:-.01em}
+.hero h1{margin:0;font-family:var(--display);font-weight:900;font-stretch:70%;text-transform:uppercase;font-size:clamp(42px,11.5vw,124px);line-height:.9;letter-spacing:-.01em;text-wrap:balance}
 .hero-claim{margin:0;font-size:clamp(19px,2vw,24px);line-height:1.3;font-weight:500;max-width:28ch}
 .stack{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .stack-badges{display:flex}
 .stack-badges img{width:32px;height:32px}
 .stack-badges img+img{margin-left:-9px}
-.stack span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.stack span{font-family:var(--mono);font-size:11px;color:var(--muted);flex:1 1 180px;min-width:0}
+.stack-badges img{width:28px;height:28px}
+@media (min-width:900px){.stack-badges img{width:32px;height:32px}}
 .hero-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:420px}
 @media (min-width:900px){
-  .hero{min-height:0;align-items:stretch;padding-top:68px}
+  .hero{padding-top:68px}
   .hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:end;width:100%}
-  .hero-media{position:relative;inset:auto;z-index:0;border-radius:0 0 190px 190px;overflow:hidden;aspect-ratio:722/1000;max-height:760px;align-self:start}
+  .hero-media{height:auto;min-height:0;margin-inline:0;border-radius:0 0 190px 190px;aspect-ratio:722/1000;max-height:760px;align-self:start}
   .hero-media::after{background:linear-gradient(180deg,rgba(11,11,11,0) 60%,rgba(11,11,11,.35) 100%)}
-  .hero-copy{padding-block:80px 72px;order:-1}
+  .hero-copy{margin-top:0;padding-block:80px 72px;order:-1}
+  .hero h1 br.m{display:none}
   .hero-actions{display:flex;flex-wrap:wrap;max-width:none}
 }
 
@@ -167,7 +170,7 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
 .soon{font-family:var(--mono);font-size:12px;color:var(--dim)}
 .cases{display:grid;gap:clamp(28px,5vw,56px);margin-top:44px}
 .case{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:clamp(20px,4vw,48px);display:grid;gap:32px;align-items:center}
-@media (min-width:900px){.case{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px}.case:nth-child(even) .devices{order:2}}
+@media (min-width:900px){.case{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px}.case:nth-child(even){grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}.case:nth-child(even) .devices{order:2}}
 .case-body{display:flex;flex-direction:column;gap:12px;min-width:0}
 .case-body h3{margin:0;font-family:var(--display);font-weight:900;font-stretch:75%;text-transform:uppercase;font-size:clamp(34px,4.5vw,52px);line-height:.95}
 .case-body > p{margin:0;color:var(--muted);font-size:16px;max-width:46ch}
@@ -185,20 +188,20 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
 .phone > .screen{border:6px solid #1F1E1C;border-radius:22px;aspect-ratio:9/19.5;box-shadow:0 18px 40px rgba(0,0,0,.55)}
 .case:hover .laptop{transform:translateY(-4px)}
 .case:hover .phone{transform:translateY(-10px) rotate(-2deg)}
-.screen{position:relative;overflow:hidden;display:block}
-.screen .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
-.laptop .screen .shot{top:22px;height:calc(100% - 22px)}
-.screen .bar{position:absolute;top:0;left:0;right:0;height:22px;display:flex;align-items:center;gap:5px;padding:0 10px;z-index:2}
+.phone .screen .viewport{border-radius:16px}
+.screen{position:relative;overflow:hidden;display:flex;flex-direction:column}
+.screen .bar{flex:0 0 22px;display:flex;align-items:center;gap:5px;padding:0 10px}
 .screen .bar i{width:7px;height:7px;border-radius:999px;background:currentColor;opacity:.35}
-.screen .bar span{margin-left:8px;font-family:var(--mono);font-size:10px;opacity:.6}
-.screen .fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;padding:12px}
-.screen .fallback strong{font-family:var(--display);font-weight:900;font-stretch:75%;text-transform:uppercase;font-size:clamp(16px,3vw,34px);line-height:1}
-.phone .screen .fallback strong{font-size:clamp(10px,1.6vw,14px)}
-.screen .fallback small{font-family:var(--mono);font-size:10px;opacity:.65}
+.screen .bar span{margin-left:8px;font-family:var(--mono);font-size:10px;opacity:.6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.screen .viewport{position:relative;flex:1 1 auto;overflow:hidden}
+.screen .shot{position:absolute;top:0;left:0;width:100%;height:auto;max-width:none;will-change:transform}
 .screen-light{background:#F4F3EF;color:#141413}
 .screen-light .bar{background:#E4E2DC}
 .screen-dark{background:#0F0F0F;color:#F2F0EB}
 .screen-dark .bar{background:#1C1C1B}
+.devices--solo{padding:0}
+.case-logo{height:auto;width:min(100%,260px);margin-bottom:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
 /* Skate / identidad */
 .identity{position:relative;overflow:hidden}
@@ -292,7 +295,7 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
     </div>
     <div class="hero-copy">
       <div class="eyebrow">Skateboarder / Dev / Designer</div>
-      <h1>Jonás<br>Yeray<br>Vivas</h1>
+      <h1>Jonás Yeray <br class="m">Vivas</h1>
       <p class="hero-claim">Diseño. Programo. Creo soluciones digitales.</p>
       <div class="stack">
         <div class="stack-badges" aria-hidden="true">
@@ -381,30 +384,29 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
     </div>
     <div class="cases">
 
-      <!-- CASO 1 · Capturas: img/tumundoads-desktop.webp y img/tumundoads-mobile.webp -->
+      <!-- CASO 1 · TuMundoAds -->
       <article class="case reveal">
         <div class="devices" aria-hidden="true">
           <div class="laptop">
             <div class="screen screen-light">
               <div class="bar"><i></i><i></i><i></i><span>tumundoads.com</span></div>
-              <div class="fallback"><strong>TuMundoAds</strong><small>Publicidad digital</small></div>
-              <img class="shot" src="img/tumundoads-desktop.webp" alt="" loading="lazy" onerror="this.remove()">
+              <div class="viewport"><img class="shot" src="img/tumundoads-desktop.webp" alt="" width="960" height="4517" loading="lazy"></div>
             </div>
             <div class="base"></div>
           </div>
           <div class="phone">
             <div class="screen screen-light">
-              <div class="fallback"><strong>TuMundoAds</strong></div>
-              <img class="shot" src="img/tumundoads-mobile.webp" alt="" loading="lazy" onerror="this.remove()">
+              <div class="viewport"><img class="shot" src="img/tumundoads-mobile.webp" alt="" width="420" height="9160" loading="lazy"></div>
             </div>
           </div>
         </div>
         <div class="case-body">
-          <span class="cat">Diseño web · Agencia de publicidad</span>
-          <h3>TuMundoAds</h3>
-          <p>Sitio para una agencia de publicidad digital que gestiona campañas en Google, Meta y TikTok Ads.</p>
+          <img class="case-logo" src="img/logo-tumundoads.webp" alt="TuMundoAds" width="600" height="76" loading="lazy">
+          <span class="cat">Diseño web · Agencia de publicidad digital</span>
+          <h3 class="sr-only">TuMundoAds</h3>
+          <p>Landing para una agencia de publicidad digital que gestiona campañas en Google, Meta y TikTok Ads, con planes, proceso de trabajo y un curso propio.</p>
           <dl class="case-facts">
-            <div><dt>Objetivo</dt><dd>Presentar los servicios, los planes y el proceso de trabajo de forma clara para empresas.</dd></div>
+            <div><dt>Objetivo</dt><dd>Presentar los servicios y los planes de forma clara y llevar cada consulta directo a WhatsApp.</dd></div>
             <div><dt>Mi rol</dt><dd>Diseño web</dd></div>
           </dl>
           <a class="btn btn-yellow" href="https://www.tumundoads.com" target="_blank" rel="noopener">Ver sitio
@@ -412,30 +414,24 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
         </div>
       </article>
 
-      <!-- CASO 2 · Capturas: img/tecnocell-desktop.webp y img/tecnocell-mobile.webp -->
+      <!-- CASO 2 · Tecnocell (para sumar el celular: agregar img/tecnocell-mobile.webp y un bloque .phone como el del caso 1) -->
       <article class="case reveal">
-        <div class="devices" aria-hidden="true">
+        <div class="devices devices--solo" aria-hidden="true">
           <div class="laptop">
             <div class="screen screen-dark">
               <div class="bar"><i></i><i></i><i></i><span>tecnocell.com.ar</span></div>
-              <div class="fallback"><strong>Tecnocell</strong><small>Tienda online</small></div>
-              <img class="shot" src="img/tecnocell-desktop.webp" alt="" loading="lazy" onerror="this.remove()">
+              <div class="viewport"><img class="shot" src="img/tecnocell-desktop.webp" alt="" width="960" height="5244" loading="lazy"></div>
             </div>
             <div class="base"></div>
           </div>
-          <div class="phone">
-            <div class="screen screen-dark">
-              <div class="fallback"><strong>Tecnocell</strong></div>
-              <img class="shot" src="img/tecnocell-mobile.webp" alt="" loading="lazy" onerror="this.remove()">
-            </div>
-          </div>
         </div>
         <div class="case-body">
-          <span class="cat">Diseño web · E-commerce</span>
-          <h3>Tecnocell</h3>
-          <p>Tienda online de productos tecnológicos, pensada para comprar cómodo desde el celular y la computadora.</p>
+          <img class="case-logo" src="img/logo-tecnocell.webp" alt="Tecnocell, Reparación y Tecnología" width="700" height="141" loading="lazy">
+          <span class="cat">Diseño web · E-commerce y servicio técnico</span>
+          <h3 class="sr-only">Tecnocell</h3>
+          <p>Tienda online de Tecnocell Merlo: venta de celulares y accesorios, servicio técnico Apple y multimarca, y cursos.</p>
           <dl class="case-facts">
-            <div><dt>Objetivo</dt><dd>Mostrar el catálogo de productos y facilitar la compra online.</dd></div>
+            <div><dt>Objetivo</dt><dd>Ordenar un catálogo grande por marcas y categorías, y poner el servicio técnico al mismo nivel que la tienda.</dd></div>
             <div><dt>Mi rol</dt><dd>Diseño web</dd></div>
           </dl>
           <a class="btn btn-yellow" href="https://www.tecnocell.com.ar" target="_blank" rel="noopener">Ver sitio
@@ -558,6 +554,38 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
         io.observe(el);
       }
     });
+  }
+
+
+  /* Pantallas de los proyectos: scroll automático, pausa al pasar el mouse o tocar */
+  var screens=[].slice.call(document.querySelectorAll('.screen .viewport'));
+  if(!reduce&&screens.length){
+    var items=screens.map(function(vp){return {vp:vp,img:vp.querySelector('.shot'),y:0,dir:1,hold:900,paused:false,visible:false}});
+    items.forEach(function(it){
+      var stop=function(){it.paused=true}, go=function(){it.paused=false};
+      var card=it.vp.closest('.case');
+      card.addEventListener('mouseenter',stop);card.addEventListener('mouseleave',go);
+      card.addEventListener('touchstart',function(){stop();clearTimeout(it.t);it.t=setTimeout(go,2500)},{passive:true});
+    });
+    if('IntersectionObserver' in window){
+      var vio=new IntersectionObserver(function(es){es.forEach(function(e){items.forEach(function(it){if(it.vp===e.target) it.visible=e.isIntersecting})})},{threshold:0.2});
+      items.forEach(function(it){vio.observe(it.vp)});
+    } else items.forEach(function(it){it.visible=true});
+    var last=performance.now();
+    (function tick(now){
+      var dt=Math.min(now-last,64);last=now;
+      items.forEach(function(it){
+        if(!it.visible||it.paused||!it.img.complete) return;
+        var max=it.img.offsetHeight-it.vp.clientHeight; if(max<=0) return;
+        if(it.hold>0){it.hold-=dt;return}
+        var speed=it.vp.clientHeight*(it.dir>0?0.11:0.9)/1000;
+        it.y+=it.dir*speed*dt;
+        if(it.y>=max){it.y=max;it.dir=-1;it.hold=1400}
+        else if(it.y<=0){it.y=0;it.dir=1;it.hold=1600}
+        it.img.style.transform='translate3d(0,'+(-it.y).toFixed(1)+'px,0)';
+      });
+      requestAnimationFrame(tick);
+    })(last);
   }
 
   /* Copiar email / WhatsApp */
