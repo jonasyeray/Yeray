@@ -80,9 +80,7 @@ a{color:inherit}
 /* ---------- Hero ---------- */
 .hero{position:relative;overflow:hidden;isolation:isolate}
 .hero-media{position:relative;z-index:0;height:min(54svh,500px);min-height:330px;margin-inline:calc(var(--gutter) * -1);overflow:hidden}
-.hero-media img,.hero-media video{width:100%;height:115%;object-fit:cover;object-position:42% 22%;will-change:transform}
-.hero-media video{position:absolute;top:0;left:0;opacity:0;transition:opacity .6s ease}
-.hero-media video.on{opacity:1}
+.hero-media img{width:100%;height:115%;object-fit:cover;object-position:42% 22%;will-change:transform}
 .hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,11,.55) 0%,rgba(11,11,11,0) 18%,rgba(11,11,11,0) 62%,rgba(11,11,11,.85) 88%,var(--bg) 100%)}
 .hero-copy{position:relative;z-index:1;display:flex;flex-direction:column;gap:16px;margin-top:-72px;padding-block:0 40px}
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--yellow);text-transform:uppercase}
@@ -211,12 +209,13 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
 .quote{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-transform:uppercase;font-size:clamp(34px,5vw,64px);line-height:1;text-wrap:balance}
 .quote em{font-style:normal;color:var(--yellow)}
 .identity-text{display:flex;flex-direction:column;gap:22px;min-width:0}
-.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.gallery figure{margin:0;overflow:hidden;border-radius:16px;aspect-ratio:3/4}
-.gallery figure:nth-child(2){transform:translateY(32px)}
-.gallery figure:nth-child(4){transform:translateY(32px)}
-.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-.gallery figure:hover img{transform:scale(1.05)}
+.reel{position:relative;margin:0 auto;width:100%;max-width:400px}
+.reel video{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;border-radius:28px;background:var(--surface);border:1px solid var(--line)}
+.reel-badge{position:absolute;left:-14px;top:28px;width:76px;height:76px;transform:rotate(-10deg)}
+.reel figcaption{position:absolute;left:16px;bottom:16px;display:inline-flex;align-items:center;gap:8px;background:rgba(11,11,11,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--fg);font-family:var(--mono);font-size:12px;padding:8px 12px;border-radius:999px}
+.reel .dot{width:8px;height:8px;border-radius:999px;background:var(--yellow);animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+@media (min-width:900px){.reel{max-width:420px;margin-right:0}}
 @media (min-width:900px){.identity-grid{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:72px;align-items:center}}
 
 /* Contacto */
@@ -294,10 +293,6 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
   <div class="wrap hero-grid">
     <div class="hero-media">
       <img id="heroImg" src="img/carve.webp" alt="Jonás Yeray Vivas haciendo un carve en la pared del bowl" width="722" height="1280" fetchpriority="high">
-      <video id="heroVid" muted loop playsinline preload="metadata" poster="video/poster-vertical.jpg" aria-hidden="true" tabindex="-1">
-        <source src="video/hero-vertical-1080.webm" type="video/webm">
-        <source src="video/hero-vertical-720.mp4" type="video/mp4">
-      </video>
     </div>
     <div class="hero-copy">
       <div class="eyebrow">Skateboarder / Dev / Designer</div>
@@ -458,12 +453,13 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
       <p class="lead">Un truco sale después de muchas sesiones. Un buen producto digital también. Práctica, adaptación y precisión, en el bowl y frente a la pantalla.</p>
       <ul class="chips"><li>disciplina</li><li>práctica</li><li>creatividad</li><li>movimiento</li><li>adaptación</li><li>precisión</li></ul>
     </div>
-    <div class="gallery reveal" id="gallery">
-      <figure><img src="img/linea.webp" alt="Yeray andando en el bowl de noche" width="732" height="1280" loading="lazy" style="object-position:50% 40%"></figure>
-      <figure><img src="img/carve.webp" alt="Carve en la pared del bowl" width="722" height="1280" loading="lazy" style="object-position:40% 35%"></figure>
-      <figure><img src="img/bowl.webp" alt="Yeray en el borde del bowl" width="722" height="1280" loading="lazy" style="object-position:50% 35%"></figure>
-      <figure><img src="img/noche.webp" alt="Yeray patinando bajo las luces del skatepark" width="723" height="1280" loading="lazy" style="object-position:50% 45%"></figure>
-    </div>
+    <figure class="reel reveal">
+      <video id="reel" muted loop playsinline preload="none" poster="img/skate-session-poster.webp" width="720" height="1280" aria-label="Video de Yeray patinando en el bowl durante una sesión con público">
+        <source src="img/skate-session.mp4" type="video/mp4">
+      </video>
+      <img class="reel-badge" src="img/badge-orange.webp" alt="" width="160" height="160" loading="lazy">
+      <figcaption><span class="dot" aria-hidden="true"></span>Sesión en el bowl</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -536,17 +532,11 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
 
   /* Header sólido + parallax sutil */
   var heroImg=document.getElementById('heroImg');
-  var heroVid=document.getElementById('heroVid');
-  if(heroVid&&!reduce){
-    heroVid.addEventListener('playing',function(){heroVid.classList.add('on')});
-    var pr=heroVid.play();if(pr&&pr.catch)pr.catch(function(){});
-    document.addEventListener('visibilitychange',function(){if(document.hidden)heroVid.pause();else{var q=heroVid.play();if(q&&q.catch)q.catch(function(){})}});
-  }
   var ticking=false;
   function onScroll(){
     var y=window.scrollY||0;
     header.classList.toggle('solid',y>40||btn.getAttribute('aria-expanded')==='true');
-    if(!reduce&&heroImg&&y<1200){var t='translate3d(0,'+(y*0.12)+'px,0)';heroImg.style.transform=t;if(heroVid)heroVid.style.transform=t}
+    if(!reduce&&heroImg&&y<1200) heroImg.style.transform='translate3d(0,'+(y*0.12)+'px,0)';
     ticking=false;
   }
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});
@@ -598,6 +588,19 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
       });
       requestAnimationFrame(tick);
     })(last);
+  }
+
+
+  /* Video de la sesión: se carga y reproduce solo cuando está a la vista */
+  var reel=document.getElementById('reel');
+  if(reel){
+    if(reduce){reel.setAttribute('controls','');}
+    else if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){es.forEach(function(e){
+        if(e.isIntersecting){var p=reel.play();if(p&&p.catch)p.catch(function(){reel.setAttribute('controls','')});}
+        else reel.pause();
+      })},{threshold:0.35}).observe(reel);
+    } else {reel.setAttribute('controls','');}
   }
 
   /* Copiar email / WhatsApp */
