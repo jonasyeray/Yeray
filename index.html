@@ -257,6 +257,32 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
 .footer-row nav a:hover{text-decoration:underline}
 .footer-row small{color:var(--dim);font-size:12px}
 
+
+/* Formación (desplegable) */
+.certs{background:var(--surface);border:1px solid var(--line);border-radius:24px;overflow:hidden}
+.certs summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:18px 20px;min-height:72px}
+.certs summary::-webkit-details-marker{display:none}
+.certs summary:hover{background:rgba(255,255,255,.03)}
+.certs summary > img{width:40px;height:40px;flex-shrink:0}
+.certs-title{display:flex;flex-direction:column;gap:2px;flex-grow:1;min-width:0}
+.certs-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.certs-title strong{font-family:var(--display);font-weight:900;font-stretch:78%;text-transform:uppercase;font-size:clamp(22px,3vw,30px);line-height:1}
+.certs-count{font-family:var(--mono);font-size:12px;font-weight:600;background:var(--yellow);color:var(--ink);border-radius:999px;min-width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;padding:0 8px}
+.certs .chev{flex-shrink:0;transition:transform .3s ease}
+.certs[open] .chev{transform:rotate(180deg)}
+.cert-list{list-style:none;margin:0;padding:4px 20px 22px;display:grid;gap:16px;border-top:1px solid var(--line);padding-top:20px}
+@media (min-width:760px){.cert-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}}
+.cert{display:flex;flex-direction:column;gap:14px;min-width:0}
+.cert-img{display:block;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.cert-img img{width:100%;height:auto;transition:transform .5s ease}
+.cert-img:hover img{transform:scale(1.03)}
+.cert-body{display:flex;flex-direction:column;gap:6px}
+.cert-body h3{margin:0;font-size:18px;font-weight:800;line-height:1.25}
+.cert-body p{margin:0;font-size:14px;color:var(--muted)}
+.cert-body .link-arrow{font-size:14px;margin-top:2px}
+.certs[open] .cert-list{animation:certIn .35s ease}
+@keyframes certIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
 /* WhatsApp flotante */
 .wa-float{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;width:62px;height:62px;border-radius:999px;background:var(--yellow);color:var(--ink);border:3px solid var(--ink);box-shadow:0 8px 24px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;transition:transform .25s ease}
 .wa-float::before{content:"";position:absolute;inset:-3px;border-radius:999px;border:2px solid var(--yellow);animation:ring 2.8s ease-out infinite}
@@ -473,6 +499,46 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
       </article>
 
     </div>
+  </div>
+</section>
+
+<!-- FORMACIÓN · Para sumar un certificado: copiar un <li class="cert"> completo, cambiar imagen, PDF y textos, y actualizar el número en .certs-count -->
+<section class="sec" id="formacion" style="padding-top:0">
+  <div class="wrap">
+    <details class="certs reveal">
+      <summary>
+        <img src="img/badge-white.webp" alt="" width="160" height="160" loading="lazy">
+        <span class="certs-title"><span class="certs-eyebrow">Formación</span><strong>Cursos y certificados</strong></span>
+        <span class="certs-count">2</span>
+        <svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <ul class="cert-list">
+        <li class="cert">
+          <a class="cert-img" href="certificados/ia-en-la-practica-daxus.pdf" target="_blank" rel="noopener" aria-label="Ver certificado: Inmersión Inteligencia Artificial en la Práctica (PDF)">
+            <img src="img/cert-ia-en-la-practica-daxus.webp" alt="" width="720" height="509" loading="lazy">
+          </a>
+          <div class="cert-body">
+            <span class="cat">Daxus Latam · Feb 2026</span>
+            <h3>Inmersión Inteligencia Artificial en la Práctica</h3>
+            <p>Certificado de participación · 8 horas</p>
+            <a class="link-arrow" href="certificados/ia-en-la-practica-daxus.pdf" target="_blank" rel="noopener">Ver certificado
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          </div>
+        </li>
+        <li class="cert">
+          <a class="cert-img" href="certificados/python-en-la-practica-daxus.pdf" target="_blank" rel="noopener" aria-label="Ver certificado: Semana de Python en la Práctica (PDF)">
+            <img src="img/cert-python-en-la-practica-daxus.webp" alt="" width="720" height="509" loading="lazy">
+          </a>
+          <div class="cert-body">
+            <span class="cat">Daxus Latam · Feb 2026</span>
+            <h3>Semana de Python en la Práctica</h3>
+            <p>Certificado de participación · 8 horas</p>
+            <a class="link-arrow" href="certificados/python-en-la-practica-daxus.pdf" target="_blank" rel="noopener">Ver certificado
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          </div>
+        </li>
+      </ul>
+    </details>
   </div>
 </section>
 
