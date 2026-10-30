@@ -12,7 +12,7 @@
 <meta property="og:description" content="Diseño. Programo. Creo soluciones digitales.">
 <meta property="og:image" content="img/carve.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" as="image" href="img/carve.webp" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero-carve-poster.webp" fetchpriority="high">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Jonás Yeray Vivas","jobTitle":"Programador y diseñador web","email":"mailto:jonasyera@gmail.com","telephone":"+5491178291597","sameAs":["https://instagram.com/jonas_vivass"],"knowsAbout":["Diseño web","Desarrollo web","Aplicaciones a medida","Diseño UI/UX","Marketing digital","Skateboard"]}</script>
 <title>Yeray</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -80,7 +80,7 @@ a{color:inherit}
 /* ---------- Hero ---------- */
 .hero{position:relative;overflow:hidden;isolation:isolate}
 .hero-media{position:relative;z-index:0;height:min(54svh,500px);min-height:330px;margin-inline:calc(var(--gutter) * -1);overflow:hidden}
-.hero-media img{width:100%;height:115%;object-fit:cover;object-position:42% 22%;will-change:transform}
+.hero-media video{display:block;width:100%;height:115%;object-fit:cover;object-position:28% 35%;will-change:transform;background:var(--surface)}
 .hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,11,.55) 0%,rgba(11,11,11,0) 18%,rgba(11,11,11,0) 62%,rgba(11,11,11,.85) 88%,var(--bg) 100%)}
 .hero-copy{position:relative;z-index:1;display:flex;flex-direction:column;gap:16px;margin-top:-72px;padding-block:0 40px}
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--yellow);text-transform:uppercase}
@@ -120,9 +120,9 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
 .chips li{font-family:var(--mono);font-size:13px;padding:8px 14px;border:1px solid var(--line);border-radius:999px}
 .chips li.eq{border-color:var(--yellow);color:var(--yellow)}
 .about-photo{position:relative;margin:0}
-.about-photo img.photo{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 45%;border-radius:var(--radius)}
+.about-photo .photo{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:var(--radius);background:var(--surface)}
 .about-photo .sticker{position:absolute;right:-12px;bottom:-18px;width:88px;height:88px}
-@media (min-width:900px){.about{grid-template-columns:minmax(0,1.1fr) minmax(0,.8fr);gap:80px;align-items:center}.about-photo img.photo{max-height:620px}}
+@media (min-width:900px){.about{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:center}}
 
 /* Servicios */
 .services{display:grid;gap:14px;margin-top:40px}
@@ -200,6 +200,16 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
 .screen-dark{background:#0F0F0F;color:#F2F0EB}
 .screen-dark .bar{background:#1C1C1B}
 .devices--solo{padding:0}
+.devices--tablet{padding:0;display:flex;justify-content:center}
+.tablet{position:relative;width:100%;max-width:460px;border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.tablet-photo{display:block;width:100%;height:auto}
+.tablet-screen{position:absolute;left:19.4%;top:15.18%;width:58.21%;height:69.64%;overflow:hidden;border-radius:2.2%/1.6%;background:#fff}
+.tablet-screen .shot{position:absolute;top:0;left:0;width:100%;height:auto;max-width:none;will-change:transform}
+.tablet-icon{position:absolute;right:5%;bottom:5%;width:20%;height:auto;filter:drop-shadow(0 10px 18px rgba(0,0,0,.5));transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.case:hover .tablet-icon{transform:translateY(-6px) rotate(-6deg)}
+.case-logo.case-logo--stack{width:min(100%,104px)}
+.status{display:inline-flex;align-items:center;gap:8px}
+.status .dot{width:8px;height:8px;border-radius:999px;background:var(--yellow);animation:blink 1.6s ease-in-out infinite}
 .case-logo{height:auto;width:min(100%,260px);margin-bottom:6px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
@@ -292,7 +302,7 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
 <section class="hero" id="inicio">
   <div class="wrap hero-grid">
     <div class="hero-media">
-      <img id="heroImg" src="img/carve.webp" alt="Jonás Yeray Vivas haciendo un carve en la pared del bowl" width="722" height="1280" fetchpriority="high">
+      <video id="heroImg" autoplay muted loop playsinline preload="auto" poster="img/hero-carve-poster.webp" width="720" height="1280" aria-label="Jonás Yeray Vivas haciendo un carve en la pared del bowl"><source src="img/hero-carve.mp4" type="video/mp4"></video>
     </div>
     <div class="hero-copy">
       <div class="eyebrow">Skateboarder / Dev / Designer</div>
@@ -331,7 +341,7 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
       </ul>
     </div>
     <figure class="about-photo reveal">
-      <img class="photo" src="img/noche.webp" alt="Jonás Yeray Vivas patinando de noche en el bowl" width="723" height="1280" loading="lazy">
+      <video class="photo lazy-vid" muted loop playsinline preload="none" poster="img/bowl-session-poster.webp" width="1280" height="720" aria-label="Jonás Yeray Vivas patinando en el bowl"><source src="img/bowl-session.mp4" type="video/mp4"></video>
       <img class="sticker" src="img/badge-wine.webp" alt="" width="160" height="160" loading="lazy">
     </figure>
   </div>
@@ -381,7 +391,7 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
         <div class="sec-head"><img src="img/badge-white.webp" alt="" width="160" height="160" loading="lazy"><span>Trabajos</span></div>
         <h2>Proyectos</h2>
       </div>
-      <p class="lead" style="max-width:40ch">Sitios diseñados por mí, publicados y funcionando.</p>
+      <p class="lead" style="max-width:40ch">Sitios que diseñé: dos publicados y uno en desarrollo.</p>
     </div>
     <div class="cases">
 
@@ -437,6 +447,28 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
           </dl>
           <a class="btn btn-yellow" href="https://www.tecnocell.com.ar" target="_blank" rel="noopener">Ver sitio
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        </div>
+      </article>
+
+      <!-- CASO 3 · Systech Studio (en desarrollo) -->
+      <article class="case reveal">
+        <div class="devices devices--tablet" aria-hidden="true">
+          <div class="tablet">
+            <img class="tablet-photo" src="img/tablet.webp" alt="" width="900" height="1018" loading="lazy">
+            <div class="viewport tablet-screen"><img class="shot" src="img/systech-desktop.webp" alt="" width="807" height="1808" loading="lazy"></div>
+            <img class="tablet-icon" src="img/systech-icon.webp" alt="" width="240" height="240" loading="lazy">
+          </div>
+        </div>
+        <div class="case-body">
+          <img class="case-logo case-logo--stack" src="img/logo-systech.webp" alt="Systech" width="400" height="344" loading="lazy">
+          <span class="cat">Diseño web · Editor de video online</span>
+          <h3 class="sr-only">Systech Studio</h3>
+          <p>Landing de Systech Studio, un editor para crear videos para Reels y TikTok desde el celular: plantillas, textos, música y calidad hasta 4K, sin descargar nada ni crear cuentas.</p>
+          <dl class="case-facts">
+            <div><dt>Objetivo</dt><dd>Explicar el producto en pocos segundos y llevar a la persona a probarlo gratis.</dd></div>
+            <div><dt>Mi rol</dt><dd>Diseño web</dd></div>
+            <div><dt>Estado</dt><dd><span class="status"><span class="dot" aria-hidden="true"></span>En desarrollo</span></dd></div>
+          </dl>
         </div>
       </article>
 
@@ -560,7 +592,7 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
 
 
   /* Pantallas de los proyectos: scroll automático, pausa al pasar el mouse o tocar */
-  var screens=[].slice.call(document.querySelectorAll('.screen .viewport'));
+  var screens=[].slice.call(document.querySelectorAll('.viewport'));
   if(!reduce&&screens.length){
     var items=screens.map(function(vp){return {vp:vp,img:vp.querySelector('.shot'),y:0,dir:1,hold:900,paused:false,visible:false}});
     items.forEach(function(it){
@@ -602,6 +634,18 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
       })},{threshold:0.35}).observe(reel);
     } else {reel.setAttribute('controls','');}
   }
+
+
+  /* Hero en video: si el teléfono pide menos movimiento, queda la imagen fija */
+  if(reduce&&heroImg&&heroImg.pause){heroImg.removeAttribute('autoplay');heroImg.pause();}
+  /* Videos que reemplazan fotos: cargan y se reproducen solo cuando están a la vista */
+  [].slice.call(document.querySelectorAll('.lazy-vid')).forEach(function(v){
+    if(reduce){v.setAttribute('controls','');return;}
+    if(!('IntersectionObserver' in window)){v.setAttribute('autoplay','');v.play&&v.play();return;}
+    new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){v.setAttribute('controls','')});}else v.pause();
+    })},{threshold:0.3}).observe(v);
+  });
 
   /* Copiar email / WhatsApp */
   document.querySelectorAll('.copy').forEach(function(b){
