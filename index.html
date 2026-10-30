@@ -248,10 +248,19 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
 .ig .t strong{font-size:19px;overflow-wrap:anywhere}
 
 /* Footer */
-.site-footer{background:var(--bg-2);border-top:1px solid var(--line);padding-block:48px calc(96px + env(safe-area-inset-bottom,0px))}
+.site-footer{overflow:hidden;background:var(--bg-2);border-top:1px solid var(--line);padding-block:48px calc(96px + env(safe-area-inset-bottom,0px))}
 .footer-row{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
-.footer-row img{width:128px;height:auto}
-.footer-row strong{font-size:17px}
+.footer-logo{width:clamp(220px,58vw,360px);height:auto;transform-origin:50% 85%;animation:crown 5.5s ease-in-out infinite;filter:drop-shadow(0 12px 28px rgba(255,234,0,.12));transition:filter .3s}
+.footer-logo:hover{animation-duration:1.6s;filter:drop-shadow(0 12px 32px rgba(255,234,0,.35))}
+@keyframes crown{0%,100%{transform:translateY(0) rotate(-3deg)}25%{transform:translateY(-10px) rotate(0deg)}50%{transform:translateY(0) rotate(3deg)}75%{transform:translateY(-6px) rotate(0deg)}}
+.ribbon{width:110%;margin-left:-5%;margin-block:40px 36px;background:var(--yellow);color:var(--ink);transform:rotate(-2deg);overflow:hidden;border-block:2px solid var(--ink);box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.ribbon-track{display:flex;width:max-content;animation:ribbon 28s linear infinite}
+.ribbon:hover .ribbon-track{animation-play-state:paused}
+.ribbon-set{display:flex;align-items:center;gap:18px;padding:7px 9px}
+.ribbon-set span{font-family:var(--display);font-weight:900;font-stretch:72%;text-transform:uppercase;font-size:20px;line-height:1;letter-spacing:.02em}
+.ribbon-set img{width:26px;height:26px;flex-shrink:0}
+@keyframes ribbon{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.slogan{margin:0 0 6px;font-family:var(--display);font-weight:900;font-stretch:70%;text-transform:uppercase;font-size:clamp(46px,11vw,124px);line-height:.9;letter-spacing:-.01em;text-wrap:balance}
 .footer-row nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px}
 .footer-row nav a{color:var(--yellow);text-decoration:none;font-weight:600;min-height:44px;display:inline-flex;align-items:center}
 .footer-row nav a:hover{text-decoration:underline}
@@ -592,15 +601,23 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
 
 <footer class="site-footer">
   <div class="wrap footer-row">
-    <img src="img/logo-yeray.webp" alt="Yeray — El Más Grande" width="900" height="683" loading="lazy">
-    <strong>Jonás Yeray Vivas</strong>
+    <img class="footer-logo" src="img/logo-yeray.webp" alt="Yeray — ¡El más grande!" width="900" height="683" loading="lazy">
+  </div>
+  <div class="ribbon" aria-label="Yeray">
+    <div class="ribbon-track" aria-hidden="true">
+      <div class="ribbon-set"><span>Yeray</span><img src="img/badge-yellow.webp" alt="" width="160" height="160" loading="lazy"><span>Yeray</span><img src="img/badge-orange.webp" alt="" width="160" height="160" loading="lazy"><span>Yeray</span><img src="img/badge-white.webp" alt="" width="160" height="160" loading="lazy"><span>Yeray</span><img src="img/badge-wine.webp" alt="" width="160" height="160" loading="lazy"><span>Yeray</span><img src="img/badge-sky.webp" alt="" width="160" height="160" loading="lazy"><span>Yeray</span><img src="img/badge-green.webp" alt="" width="160" height="160" loading="lazy"><span>Yeray</span><img src="img/badge-pink.webp" alt="" width="160" height="160" loading="lazy"><span>Yeray</span><img src="img/badge-violet.webp" alt="" width="160" height="160" loading="lazy"><span>Yeray</span><img src="img/badge-red.webp" alt="" width="160" height="160" loading="lazy"></div>
+      <div class="ribbon-set"><span>Yeray</span><img src="img/badge-yellow.webp" alt="" width="160" height="160" loading="lazy"><span>Yeray</span><img src="img/badge-orange.webp" alt="" width="160" height="160" loading="lazy"><span>Yeray</span><img src="img/badge-white.webp" alt="" width="160" height="160" loading="lazy"><span>Yeray</span><img src="img/badge-wine.webp" alt="" width="160" height="160" loading="lazy"><span>Yeray</span><img src="img/badge-sky.webp" alt="" width="160" height="160" loading="lazy"><span>Yeray</span><img src="img/badge-green.webp" alt="" width="160" height="160" loading="lazy"><span>Yeray</span><img src="img/badge-pink.webp" alt="" width="160" height="160" loading="lazy"><span>Yeray</span><img src="img/badge-violet.webp" alt="" width="160" height="160" loading="lazy"><span>Yeray</span><img src="img/badge-red.webp" alt="" width="160" height="160" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="wrap footer-row">
+    <p class="slogan">¡El más grande!</p>
     <span class="mono" style="font-size:12px;color:var(--dim)">Programador · Diseñador · Deportista</span>
     <nav aria-label="Contacto y redes">
       <a href="https://instagram.com/jonas_vivass" target="_blank" rel="noopener">Instagram</a>
       <a href="https://wa.me/5491178291597" target="_blank" rel="noopener">WhatsApp</a>
       <a href="mailto:jonasyera@gmail.com">Email</a>
     </nav>
-    <small>© <span id="year">2026</span> Jonás Yeray Vivas</small>
+    <small>© <span id="year">2026</span> Yeray</small>
   </div>
 </footer>
 
