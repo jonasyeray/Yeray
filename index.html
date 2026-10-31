@@ -282,9 +282,20 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
 .cert-list{list-style:none;margin:0;padding:4px 20px 22px;display:grid;gap:16px;border-top:1px solid var(--line);padding-top:20px}
 @media (min-width:760px){.cert-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}}
 .cert{display:flex;flex-direction:column;gap:14px;min-width:0}
-.cert-img{display:block;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
-.cert-img img{width:100%;height:auto;transition:transform .5s ease}
-.cert-img:hover img{transform:scale(1.03)}
+.cert-img{display:block;width:100%;padding:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg);cursor:zoom-in}
+.cert-thumb{display:block;width:100%;aspect-ratio:1100/777;background-size:cover;background-position:center;transition:transform .5s ease}
+.cert-img:hover .cert-thumb{transform:scale(1.03)}
+.cert-open{background:none;border:0;border-bottom:1.5px solid var(--yellow);color:var(--fg);padding:0;cursor:pointer;font:inherit;font-weight:700}
+.cert-note{margin:0;padding:0 20px 20px;font-family:var(--mono);font-size:11px;color:var(--dim)}
+.protect{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none}
+.cert-viewer{width:min(1100px,calc(100vw - 32px));max-height:calc(100dvh - 32px);padding:0;border:1px solid var(--line);border-radius:20px;background:var(--surface);color:var(--fg);overflow:hidden}
+.cert-viewer::backdrop{background:rgba(5,5,5,.86);backdrop-filter:blur(6px)}
+.cv-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 10px 18px;border-bottom:1px solid var(--line)}
+.cv-head strong{font-size:15px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cv-close{width:44px;height:44px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--fg);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.cv-close:hover{border-color:var(--fg)}
+.cv-img{width:100%;aspect-ratio:1100/777;max-height:calc(100dvh - 140px);background-size:contain;background-repeat:no-repeat;background-position:center;background-color:var(--bg)}
+.cv-foot{margin:0;padding:10px 18px;font-family:var(--mono);font-size:11px;color:var(--dim)}
 .cert-body{display:flex;flex-direction:column;gap:6px}
 .cert-body h3{margin:0;font-size:18px;font-weight:800;line-height:1.25}
 .cert-body p{margin:0;font-size:14px;color:var(--muted)}
@@ -511,42 +522,67 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
   </div>
 </section>
 
-<!-- FORMACIÓN · Para sumar un certificado: copiar un <li class="cert"> completo, cambiar imagen, PDF y textos, y actualizar el número en .certs-count -->
+<!-- FORMACIÓN · Para sumar un certificado: copiar un <li class="cert"> completo, cambiar imagen, PDF y textos, y actualizar el número en .certs-count. Los certificados se muestran como imagen con marca de agua; no se publican los PDF -->
 <section class="sec" id="formacion" style="padding-top:0">
   <div class="wrap">
     <details class="certs reveal">
       <summary>
         <img src="img/badge-white.webp" alt="" width="160" height="160" loading="lazy">
         <span class="certs-title"><span class="certs-eyebrow">Formación</span><strong>Cursos y certificados</strong></span>
-        <span class="certs-count">2</span>
+        <span class="certs-count">4</span>
         <svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </summary>
       <ul class="cert-list">
         <li class="cert">
-          <a class="cert-img" href="certificados/ia-en-la-practica-daxus.pdf" target="_blank" rel="noopener" aria-label="Ver certificado: Inmersión Inteligencia Artificial en la Práctica (PDF)">
-            <img src="img/cert-ia-en-la-practica-daxus.webp" alt="" width="720" height="509" loading="lazy">
-          </a>
+          <button type="button" class="cert-img protect" data-view="img/cert-powerbi-view.webp" data-title="Acelerador de Carrera con Power BI + IA" aria-label="Ver certificado: Acelerador de Carrera con Power BI + IA">
+            <span class="cert-thumb" style="background-image:url('img/cert-powerbi-thumb.webp')"></span>
+          </button>
+          <div class="cert-body">
+            <span class="cat">Daxus Latam · Mar 2026</span>
+            <h3>Acelerador de Carrera con Power BI + IA</h3>
+            <p>Certificado de participación · 8 horas</p>
+            <button type="button" class="link-arrow cert-open" data-view="img/cert-powerbi-view.webp" data-title="Acelerador de Carrera con Power BI + IA">Ver certificado
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/></svg></button>
+          </div>
+        </li>
+        <li class="cert">
+          <button type="button" class="cert-img protect" data-view="img/cert-bigschool-view.webp" data-title="Desarrollo con IA: de 0 a Producción" aria-label="Ver certificado: Desarrollo con IA: de 0 a Producción">
+            <span class="cert-thumb" style="background-image:url('img/cert-bigschool-thumb.webp')"></span>
+          </button>
+          <div class="cert-body">
+            <span class="cat">BIG school · Mar 2026</span>
+            <h3>Desarrollo con IA: de 0 a Producción</h3>
+            <p>Certificado de iniciación al desarrollo con IA · 6 horas</p>
+            <button type="button" class="link-arrow cert-open" data-view="img/cert-bigschool-view.webp" data-title="Desarrollo con IA: de 0 a Producción">Ver certificado
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/></svg></button>
+          </div>
+        </li>
+        <li class="cert">
+          <button type="button" class="cert-img protect" data-view="img/cert-ia-view.webp" data-title="Inmersión Inteligencia Artificial en la Práctica" aria-label="Ver certificado: Inmersión Inteligencia Artificial en la Práctica">
+            <span class="cert-thumb" style="background-image:url('img/cert-ia-thumb.webp')"></span>
+          </button>
           <div class="cert-body">
             <span class="cat">Daxus Latam · Feb 2026</span>
             <h3>Inmersión Inteligencia Artificial en la Práctica</h3>
             <p>Certificado de participación · 8 horas</p>
-            <a class="link-arrow" href="certificados/ia-en-la-practica-daxus.pdf" target="_blank" rel="noopener">Ver certificado
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+            <button type="button" class="link-arrow cert-open" data-view="img/cert-ia-view.webp" data-title="Inmersión Inteligencia Artificial en la Práctica">Ver certificado
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/></svg></button>
           </div>
         </li>
         <li class="cert">
-          <a class="cert-img" href="certificados/python-en-la-practica-daxus.pdf" target="_blank" rel="noopener" aria-label="Ver certificado: Semana de Python en la Práctica (PDF)">
-            <img src="img/cert-python-en-la-practica-daxus.webp" alt="" width="720" height="509" loading="lazy">
-          </a>
+          <button type="button" class="cert-img protect" data-view="img/cert-python-view.webp" data-title="Semana de Python en la Práctica" aria-label="Ver certificado: Semana de Python en la Práctica">
+            <span class="cert-thumb" style="background-image:url('img/cert-python-thumb.webp')"></span>
+          </button>
           <div class="cert-body">
             <span class="cat">Daxus Latam · Feb 2026</span>
             <h3>Semana de Python en la Práctica</h3>
             <p>Certificado de participación · 8 horas</p>
-            <a class="link-arrow" href="certificados/python-en-la-practica-daxus.pdf" target="_blank" rel="noopener">Ver certificado
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+            <button type="button" class="link-arrow cert-open" data-view="img/cert-python-view.webp" data-title="Semana de Python en la Práctica">Ver certificado
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/></svg></button>
           </div>
         </li>
       </ul>
+      <p class="cert-note">Los certificados se muestran solo para visualizar.</p>
     </details>
   </div>
 </section>
@@ -598,6 +634,13 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
 </section>
 
 </main>
+
+<dialog class="cert-viewer" id="certViewer" aria-label="Certificado">
+  <div class="cv-head"><strong id="cvTitle">Certificado</strong>
+    <button type="button" class="cv-close" id="cvClose" aria-label="Cerrar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="cv-img protect" id="cvImg" role="img" aria-label="Certificado"></div>
+  <p class="cv-foot">Solo visualización · Yeray</p>
+</dialog>
 
 <footer class="site-footer">
   <div class="wrap footer-row">
@@ -729,6 +772,23 @@ h2{margin:0;font-family:var(--display);font-weight:900;font-stretch:72%;text-tra
       if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){v.setAttribute('controls','')});}else v.pause();
     })},{threshold:0.3}).observe(v);
   });
+
+
+  /* Visor de certificados: sin descarga, sin clic derecho ni arrastre */
+  var viewer=document.getElementById('certViewer'), cvImg=document.getElementById('cvImg'), cvTitle=document.getElementById('cvTitle');
+  function openCert(btn){
+    cvImg.style.backgroundImage="url('"+btn.getAttribute('data-view')+"')";
+    cvTitle.textContent=btn.getAttribute('data-title');
+    cvImg.setAttribute('aria-label','Certificado: '+btn.getAttribute('data-title'));
+    if(viewer.showModal) viewer.showModal(); else viewer.setAttribute('open','');
+  }
+  function closeCert(){ if(viewer.close) viewer.close(); else viewer.removeAttribute('open'); cvImg.style.backgroundImage=''; }
+  [].slice.call(document.querySelectorAll('[data-view]')).forEach(function(b){b.addEventListener('click',function(){openCert(b)})});
+  document.getElementById('cvClose').addEventListener('click',closeCert);
+  viewer.addEventListener('click',function(e){if(e.target===viewer) closeCert()});
+  viewer.addEventListener('close',function(){cvImg.style.backgroundImage=''});
+  document.addEventListener('contextmenu',function(e){if(e.target.closest('.protect,.cert-viewer')) e.preventDefault()});
+  document.addEventListener('dragstart',function(e){if(e.target.closest('.protect,.cert-viewer')) e.preventDefault()});
 
   /* Copiar email / WhatsApp */
   document.querySelectorAll('.copy').forEach(function(b){
